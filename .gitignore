@@ -1,0 +1,6 @@
+/brand_classification/
+/data/
+/segmentation/runs/
+/cooler-ia.doc
+/segmentation/yolo26m-seg.pt
+/segmentation/yolo26n-seg.pt
