@@ -39,6 +39,7 @@ def detect_forbidden(cam: str | int=0, is_raspberry=True):
         picam.configure(config)
         picam.start()
         image = picam.capture_array()
+        image = cv.cvtColor(image, cv.COLOR_BGRA2BGR)
     else:
         cap = cv.VideoCapture(cam)
         if not cap.isOpened():
