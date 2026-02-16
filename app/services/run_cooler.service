@@ -1,0 +1,17 @@
+[Unit]
+Description=Run run_app.sh once
+Wants=network-online.target
+After=network-online.target
+StartLimitBurst=3
+StartLimitIntervalSec=60
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+TimeoutStopSec=180
+Environment=PATH=/usr/bin:/bin:/usr/local/bin
+ExecStart=/usr/local/bin/run_app.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target

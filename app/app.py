@@ -1,10 +1,11 @@
 import os
 import time
 
+from picamera2 import Picamera2
 import numpy as np
 import cv2 as cv
 
-from brand_classification.svm_classifier import predict_classes, load_svm, new_cnn_extractor
+from classification.svm_classifier import predict_classes, load_svm, new_cnn_extractor
 from segmentation.segmentation import new_model, get_bottles
 
 def alert(_image: np.ndarray, _bottles_detected: list[np.ndarray], _classes_detected: list[str]):
@@ -29,15 +30,20 @@ model_segmentation = new_model()
 cnn_extractor = new_cnn_extractor()
 svm = load_svm()
 
-def detect_forbidden(cam: str | int=0):
-    cap = cv.VideoCapture(cam)
-    if not cap.isOpened():
-        print("can't open camera")
-        exit(1)
-    ok, image = cap.read()
-    if not ok:
-        print("can't read camera")
-        exit(1)
+def detect_forbidden(cam: str | int=0, is_raspberry=True):
+    if is_raspberry:
+        picam = Picamera2()
+        picam.start()
+        image = picam.capture_array()
+    else:
+        cap = cv.VideoCapture(cam)
+        if not cap.isOpened():
+            print("can't open camera")
+            exit(1)
+        ok, image = cap.read()
+        if not ok:
+            print("can't read camera")
+            exit(1)
 
     bottles = get_bottles(model_segmentation, image, save=True)
 
