@@ -5,8 +5,8 @@ from picamera2 import Picamera2
 import numpy as np
 import cv2 as cv
 
-from ..classification.svm_classifier import predict_classes, load_svm, new_cnn_extractor
-from ..segmentation.segmentation import new_model, get_bottles
+from classification.svm_classifier import predict_classes, load_svm, new_cnn_extractor
+from segmentation.segmentation import new_model, get_bottles
 
 def alert(_image: np.ndarray, _bottles_detected: list[np.ndarray], _classes_detected: list[str]):
     # save date.alert with <class_detected>, as well as date_image.jpg and date_cropped.jpg
