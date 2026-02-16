@@ -32,10 +32,10 @@ svm = load_svm()
 
 def detect_forbidden(cam: str | int=0, is_raspberry=True):
     if is_raspberry:
-        config = picamera2.create_video_configuration(
+        picam = picamera2.Picamera2()
+        config = picam.create_video_configuration(
             main={"size": (640, 480), "format": "BGR888"}
         )
-        picam = picamera2.Picamera2()
         picam.configure(config)
         picam.start()
         image = picam.capture_array()
