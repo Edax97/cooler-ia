@@ -51,6 +51,9 @@ def detect_forbidden(cam: str | int=0, is_raspberry=True):
             exit(1)
 
     bottles = get_bottles(model_segmentation, image, save=True)
+    if len(bottles) == 0:
+        print("no bottles detected")
+        return
 
     _allowed = get_allowed("permitidas.txt")
 

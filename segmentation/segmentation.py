@@ -23,6 +23,10 @@ def get_bottles(_model: YOLO, _image: np.ndarray, save=False):
     img_h, img_w = _image.shape[:2]
 
     results = _model.predict(_image, conf=CONF, iou=IOU, classes=CLASSES)
+
+    if len(results) == 0:
+        return []
+
     masks = results[0].masks.xy
     boxes = results[0].boxes.xyxy
     bottles = []
