@@ -26,6 +26,8 @@ def get_bottles(_model: YOLO, _image: np.ndarray, save=False):
 
     if len(results) == 0:
         return []
+    if results[0].masks is None:
+        return []
 
     masks = results[0].masks.xy
     boxes = results[0].boxes.xyxy
