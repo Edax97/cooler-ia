@@ -1,7 +1,7 @@
 import os
 import time
 
-from picamera2 import Picamera2
+import picamera2
 import numpy as np
 import cv2 as cv
 
@@ -32,7 +32,11 @@ svm = load_svm()
 
 def detect_forbidden(cam: str | int=0, is_raspberry=True):
     if is_raspberry:
-        picam = Picamera2()
+        config = picam2.create_video_configuration(
+            main={"size": (640, 480), "format": "BGR888"}
+        )
+        picam = picamera2.Picamera2()
+        picam.configure(config)
         picam.start()
         image = picam.capture_array()
     else:
