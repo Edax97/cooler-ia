@@ -2,7 +2,7 @@
 Description=Run run_cooler.service every 10 minutes
 
 [Timer]
-OnCalendar=*-*-* *:05:00
+OnCalendar=*-*-* *:*/2:00
 Persistent=true
 OnBootSec=60
 Unit=run_cooler.service
