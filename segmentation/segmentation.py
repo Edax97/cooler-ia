@@ -14,7 +14,7 @@ def save_imgs(image_list: list[np.ndarray], save_dir: str):
     for j, img in enumerate(image_list):
         cv.imwrite(os.path.join(save_dir, f"bottle_{j}.jpg"), img)
 
-def new_model(_model_path="../models/yolo26l-seg.pt"):
+def new_model(_model_path="models/yolo26l-seg.pt"):
     return YOLO(_model_path)
 
 def get_bottles(_model: YOLO, _image: np.ndarray, save=False):

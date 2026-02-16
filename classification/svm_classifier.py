@@ -18,7 +18,7 @@ index_to_class = {
     5: "sprite",
 }
 
-SVM_FILE = "../models/svm.pkl"
+SVM_FILE = "models/svm.pkl"
 def save_svm(svm, name=SVM_FILE):
     with open(name, 'wb') as file:
         pickle.dump(svm, file)
