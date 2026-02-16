@@ -12,7 +12,7 @@ def alert(_image: np.ndarray, _bottles_detected: list[np.ndarray], _classes_dete
     # save date.alert with <class_detected>, as well as date_image.jpg and date_cropped.jpg
     # dir date/
     date = time.strftime("%Y%m%d-%H%M%S")
-    dir_name =f"alerts/{date}"
+    dir_name =f"/home/pi/alerts/{date}"
     os.mkdir(dir_name)
     cv.imwrite(f"{dir_name}/captura.jpg", _image)
     for i, class_str in enumerate(_classes_detected):
